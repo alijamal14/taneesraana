@@ -1,0 +1,29 @@
+# macOS system files
+.DS_Store
+../.DS_Store
+*/.DS_Store
+**/.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Temporary files
+*.tmp
+.cache/
+
+# Keep important auto-update files
+!version.json
+!sw.js
+!update-version.js
+!package.json

@@ -1,0 +1,15 @@
+{
+  "name": "dr-tanees-raana-website",
+  "version": "1.0.0",
+  "description": "Auto-updating website for Dr. Tanees Raana",
+  "scripts": {
+    "update-patch": "node update-version.js patch",
+    "update-minor": "node update-version.js minor",
+    "update-major": "node update-version.js major",
+    "serve": "python3 -m http.server 8000",
+    "serve-php": "php -S localhost:8000"
+  },
+  "keywords": ["medical", "website", "auto-update"],
+  "author": "Ali Jamal",
+  "license": "MIT"
+}
