@@ -804,6 +804,38 @@ nav ul li a:hover::after {
 .map-button-container .btn i {
     margin-right: 8px;
 }
+
+/* Phone link styling */
+.phone-link {
+    color: var(--primary-color) !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+    padding: 8px 15px !important;
+    border-radius: 25px !important;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5) !important;
+    border: 2px solid transparent !important;
+    margin: 5px 0 !important;
+}
+
+.phone-link:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(92, 107, 192, 0.3) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* CTA buttons layout enhancement */
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
     margin-top: 10px;
 }
 
