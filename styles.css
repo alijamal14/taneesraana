@@ -828,6 +828,124 @@ nav ul li a:hover::after {
     border-color: var(--primary-color) !important;
 }
 
+/* Dual Location Styles */
+.locations-container {
+    flex-direction: column;
+}
+
+.locations-container .details {
+    width: 100%;
+}
+
+.location-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.location-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.location-header h4 {
+    color: var(--dark-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.location-header h4 i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.location-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.location-badge.main {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+}
+
+.location-badge.secondary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.location-card .address {
+    color: var(--gray-color);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.location-card .map-container {
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.location-card .map-button-container {
+    margin-top: 15px;
+}
+
+/* Hours Grid Styling */
+.hours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.hours-location {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hours-location h4 {
+    color: #FFD700;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.hours-location p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.call-ahead {
+    font-style: italic;
+    color: #FFD700 !important;
+    font-size: 0.85rem !important;
+    margin-top: 10px !important;
+}
+
 /* CTA buttons layout enhancement */
 .cta-buttons {
     display: flex;
@@ -985,6 +1103,22 @@ footer {
     .map-container iframe {
         height: 150px;
     }
+    
+    /* Dual Location Responsive */
+    .hours-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .location-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .location-badge {
+        align-self: flex-start;
+    }
 }
 
 @media (max-width: 576px) {
@@ -998,6 +1132,25 @@ footer {
     
     .contact-form {
         padding: 25px;
+    }
+    
+    /* Small Mobile - Dual Location */
+    .location-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .location-header h4 {
+        font-size: 1.1rem;
+    }
+    
+    .location-badge {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+    }
+    
+    .hours-location {
+        padding: 15px;
     }
     
     .footer-content {
