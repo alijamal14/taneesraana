@@ -1,10 +1,10 @@
-/* Enhanced Global Styles with Modern Color Scheme */
+/* Enhanced Global Styles with Paradise Green Color Scheme */
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #ec4899;
-    --accent-color: #8b5cf6;
+    --primary-color: #10b981;
+    --secondary-color: #06b6d4;
+    --accent-color: #059669;
     --dark-color: #1e293b;
-    --light-color: #f8fafc;
+    --light-color: #f0fdfa;
     --text-color: #334155;
     --gray-color: #64748b;
     --light-gray: #e2e8f0;
@@ -14,8 +14,8 @@
     --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     --box-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
     --gold-gradient: linear-gradient(135deg, #fbbf24, #f59e0b);
-    --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
-    --secondary-gradient: linear-gradient(135deg, #ec4899, #f97316);
+    --primary-gradient: linear-gradient(135deg, #10b981, #059669);
+    --secondary-gradient: linear-gradient(135deg, #06b6d4, #0891b2);
     --success-gradient: linear-gradient(135deg, #10b981, #059669);
     --glass-effect: rgba(255, 255, 255, 0.25);
     --glass-border: rgba(255, 255, 255, 0.18);
@@ -192,30 +192,30 @@ ul {
 }
 
 .primary-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c6bc0 100%);
+    background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
     color: white;
-    box-shadow: 0 8px 25px rgba(92, 107, 192, 0.4);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
 }
 
 .primary-btn:hover {
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 50%, #4c63d2 100%);
+    background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
     transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(92, 107, 192, 0.5);
+    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
 }
 
 .secondary-btn {
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 50%, #388e3c 100%);
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
     color: white;
-    border: 2px solid rgba(76, 175, 80, 0.3);
-    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+    border: 2px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
 }
 
 .secondary-btn:hover {
-    background: linear-gradient(135deg, #45a049 0%, #388e3c 50%, #2e7d32 100%);
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 50%, #155e75 100%);
     color: white;
     transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
-    border-color: #4CAF50;
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+    border-color: #06b6d4;
 }
 
 /* Header */
@@ -452,7 +452,7 @@ nav ul li a:hover::after {
 /* Awards Section */
 .awards {
     padding: 100px 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
     color: white;
 }
 
@@ -461,7 +461,7 @@ nav ul li a:hover::after {
 }
 
 .awards .underline {
-    background: #FFD700;
+    background: #06b6d4;
 }
 
 .awards-grid {
@@ -489,7 +489,7 @@ nav ul li a:hover::after {
 .award-icon {
     width: 80px;
     height: 80px;
-    background: #FFD700;
+    background: #06b6d4;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -499,13 +499,13 @@ nav ul li a:hover::after {
 
 .award-icon i {
     font-size: 35px;
-    color: #333;
+    color: white;
 }
 
 .award-card h3 {
     margin-bottom: 15px;
     font-size: 1.3rem;
-    color: #FFD700;
+    color: #06b6d4;
 }
 
 .award-card p {
@@ -515,7 +515,7 @@ nav ul li a:hover::after {
 
 /* Enhanced Hero Section */
 .hero {
-    background: linear-gradient(135deg, rgba(92, 107, 192, 0.95), rgba(139, 69, 19, 0.85)), url('https://images.unsplash.com/photo-1567601169793-0a9674bdb80f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.85)), url('https://images.unsplash.com/photo-1567601169793-0a9674bdb80f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -533,7 +533,7 @@ nav ul li a:hover::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1), rgba(255, 99, 71, 0.1));
+    background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1), rgba(6, 182, 212, 0.1));
     z-index: 1;
     animation: shimmer 3s ease-in-out infinite;
 }
@@ -552,7 +552,7 @@ nav ul li a:hover::after {
     font-size: 3.5rem;
     margin-bottom: 15px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(135deg, #FFD700, #FFA500, #FF6347);
+    background: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -565,7 +565,7 @@ nav ul li a:hover::after {
     margin-bottom: 10px;
     font-weight: 600;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    color: #FFD700;
+    color: #10b981;
 }
 
 .hero-content p {
@@ -593,13 +593,13 @@ nav ul li a:hover::after {
 .service-card:hover {
     transform: translateY(-15px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-color: #FFD700;
+    border-color: #10b981;
 }
 
 .service-card .icon {
     width: 90px;
     height: 90px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #10b981, #059669);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -614,12 +614,12 @@ nav ul li a:hover::after {
 
 /* Enhanced About Section */
 .about {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
 }
 
 .image-placeholder {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border: 5px solid #FFD700;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: 5px solid #06b6d4;
 }
 
 .image-placeholder i {
@@ -642,8 +642,8 @@ nav ul li a:hover::after {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
     z-index: 1;
 }
 
@@ -1104,7 +1104,7 @@ nav ul li a:hover::after {
 /* Best in Pakistan Section */
 .best-pakistan {
     padding: 100px 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6366f1 100%);
+    background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
     color: white;
     text-align: center;
     position: relative;
@@ -1118,14 +1118,23 @@ nav ul li a:hover::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 50%);
     z-index: 1;
 }
 
 .best-content {
     position: relative;
     z-index: 2;
+}
+
+.best-content h2 {
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .best-content h2 {
