@@ -315,6 +315,11 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: rgba(255, 255, 255, 0.95);
         }
         
+        [data-theme="dark"] header.fixed {
+            background-color: rgba(15, 23, 42, 0.95) !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
         .gcal-appointment-button {
             background-color: #4285F4;
             color: white;

@@ -239,7 +239,6 @@ ul {
 .about-text h3, .qualifications h4, .award-card h3, .service-card h3, .stat-item p, .location-header h4, .hours-card h4, .hours-location h4, .contact-card h3, .faq-item h3 {
     color: var(--heading-color-light);
 }
-[data-theme="dark"] .about-text h3,
 [data-theme="dark"] .qualifications h4,
 [data-theme="dark"] .award-card h3,
 [data-theme="dark"] .service-card h3,
@@ -516,23 +515,24 @@ nav {
     
     .header-actions {
         position: relative;
-        justify-content: space-between;
-        width: 100%;
+        justify-content: flex-end;
+        width: auto;
         align-items: center;
+        margin-left: auto;
     }
     
     .mobile-menu {
         display: flex !important;
         align-items: center;
         justify-content: center;
-        order: 2;
         position: relative;
         z-index: 1001;
         background: var(--surface-alt);
         border-radius: var(--radius-md);
-        padding: 10px;
-        min-width: 44px;
-        min-height: 44px;
+        padding: 12px;
+        min-width: 48px;
+        min-height: 48px;
+        margin-right: 10px;
     }
     
     .nav-main {
@@ -541,7 +541,7 @@ nav {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.8);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
@@ -960,9 +960,38 @@ nav ul li a:hover::after {
 /* Dark mode adjustments */
 [data-theme="dark"] .hero { background: linear-gradient(135deg,#064e3b,#022c22), url('https://images.unsplash.com/photo-1567601169793-0a9674bdb80f?auto=format&fit=crop&w=1600&q=60'); background-size:cover; }
 [data-theme="dark"] header { background-color: var(--bg); border-bottom: 1px solid var(--border-color); }
+[data-theme="dark"] header.fixed { background-color: var(--bg) !important; }
 [data-theme="dark"] nav { background: var(--bg); border-color: var(--border-color); }
 [data-theme="dark"] .nav-menu li a { color: var(--text-color); }
 [data-theme="dark"] .nav-menu li a:hover { background: var(--surface-alt); }
+[data-theme="dark"] .qualifications h4 { color: var(--headline-color) !important; }
+[data-theme="dark"] .qualifications ul li { color: var(--text-color) !important; }
+[data-theme="dark"] .qualifications { 
+    background-color: var(--surface);
+    border-color: var(--border-color);
+}
+[data-theme="dark"] .about {
+    background: var(--bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .about .section-header h2 {
+    color: var(--headline-color);
+}
+
+/* Clean about-text styles for dark mode */
+[data-theme="dark"] .about-text {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .about-text h3 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .about-text p {
+    color: #f1f5f9;
+}
 [data-theme="dark"] .contact { background: linear-gradient(135deg,#0f172a,#1e293b); }
 [data-theme="dark"] .contact-card { background: var(--surface); border-color: var(--border-color); }
 [data-theme="dark"] .phone-link { background: linear-gradient(135deg, var(--surface), var(--surface-alt)); color: var(--primary-color); }
@@ -980,6 +1009,19 @@ nav ul li a:hover::after {
 [data-theme="dark"] .location-card, [data-theme="dark"] .hours-location { background: linear-gradient(135deg,#1e293b,#0f172a); }
 [data-theme="dark"] .footer-logo h3, [data-theme="dark"] .quick-links h4, [data-theme="dark"] .services-links h4 { color: var(--headline-color); }
 [data-theme="dark"] footer { background:#020617; }
+
+/* Mobile navigation dark mode */
+[data-theme="dark"] .mobile-menu {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .nav-main ul li a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .nav-main ul li a:hover {
+    color: var(--headline-color);
+}
 
 /* Theme toggle */
 .theme-toggle {
