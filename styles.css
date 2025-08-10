@@ -916,7 +916,7 @@ nav ul li a:hover::after {
 /* New hero adaptive heading */
 .hero-title { font-size: clamp(2.2rem,4.2vw,3.6rem); line-height:1.05; font-weight:800; letter-spacing:.5px; position:relative; z-index:3; }
 .hero-title-light { color:#ffffff; text-shadow:0 3px 18px rgba(0,0,0,.55),0 1px 2px rgba(0,0,0,.6); }
-.hero-title-dark { color: var(--headline-color); text-shadow:0 2px 6px rgba(0,0,0,.15); }
+.hero-title-dark { color: #ffffff; text-shadow:0 2px 6px rgba(0,0,0,.15); }
 [data-theme="dark"] .hero-title { color:#ffffff; }
 .hero-sub { font-size:clamp(1.1rem,1.9vw,1.75rem); font-weight:600; margin-bottom:1rem; color:#e2fdf7; text-shadow:0 2px 10px rgba(0,0,0,.45); }
 [data-theme="dark"] .hero-sub { color:#d1fae5; }
@@ -991,6 +991,26 @@ nav ul li a:hover::after {
 
 [data-theme="dark"] .about-text p {
     color: #f1f5f9;
+}
+
+/* Dark mode typography improvements */
+[data-theme="dark"] .site-title {
+    color: #e2e8f0;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .logo p {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .hero-title-dark {
+    color: #f1f5f9;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Fix stat-item paragraph visibility in dark mode */
+[data-theme="dark"] .stat-item p {
+    color: #64748b;
 }
 [data-theme="dark"] .contact { background: linear-gradient(135deg,#0f172a,#1e293b); }
 [data-theme="dark"] .contact-card { background: var(--surface); border-color: var(--border-color); }
