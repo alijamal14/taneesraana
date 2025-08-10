@@ -1,0 +1,40 @@
+{
+  "name": "Dr. Tanees Raana - Best Gynecologist Pakistan",
+  "short_name": "Dr Raana",
+  "description": "Pakistan's #1 gynecologist & women's health specialist (MBBS, DGO, MCPS, FCPS) offering advanced gynecology, obstetrics & infertility care in Islamabad & Nowshera.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/index.html?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#10b981",
+  "categories": ["medical", "health", "women", "clinic"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-256.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "/icons/icon-384.png", "sizes": "384x384", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Appointment",
+      "description": "Book a consultation with Dr. Tanees Raana",
+      "url": "/index.html#contact",
+      "icons": [{ "src": "/icons/shortcut-appointment.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Clinic Hours",
+      "short_name": "Hours",
+      "description": "View clinic operating hours",
+      "url": "/index.html#hours",
+      "icons": [{ "src": "/icons/shortcut-hours.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false,
+  "id": "/?app=dr-raana"
+}
