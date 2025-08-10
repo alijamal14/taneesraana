@@ -1,31 +1,147 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme Dropdown (System / Light / Dark)
+    const root = document.documentElement;
+    const switcher = document.querySelector('.theme-switcher');
+    const switcherBtn = document.getElementById('themeSwitcherButton');
+    const menu = document.getElementById('themeSwitcherMenu');
+    const options = menu ? Array.from(menu.querySelectorAll('li[role="menuitemradio"]')) : [];
+    const PREF_KEY = 'site-theme'; // values: 'light','dark','system'
+
+    function systemPref() { return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'; }
+
+    function setTheme(mode){
+        if(mode === 'light'){ 
+            root.setAttribute('data-theme','light'); 
+        }
+        else if(mode === 'dark'){ 
+            root.setAttribute('data-theme','dark'); 
+        }
+        else { 
+            // system mode - apply actual system preference
+            const systemPreference = systemPref();
+            root.setAttribute('data-theme', systemPreference);
+        }
+        // Reflect label
+        if(switcher){
+            const labelEl = switcher.querySelector('.theme-switcher__label');
+            if(labelEl){ labelEl.textContent = mode.charAt(0).toUpperCase()+mode.slice(1); }
+            switcher.dataset.mode = mode;
+        }
+        // Update checked states
+        options.forEach(li => {
+            const val = li.getAttribute('data-theme-value');
+            const active = (mode === 'system' && val === 'system') || (mode !== 'system' && val === mode);
+            li.setAttribute('aria-checked', String(active));
+            if(active){ li.setAttribute('aria-selected','true'); } else { li.removeAttribute('aria-selected'); }
+        });
+        localStorage.setItem(PREF_KEY, mode);
+        adaptHeroTitle();
+    }
+
+    function adaptHeroTitle(){
+        const heroTitle = document.querySelector('.hero-title');
+        if(!heroTitle) return;
+        const isDark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && systemPref()==='dark');
+        heroTitle.classList.toggle('hero-title-light', isDark);
+        heroTitle.classList.toggle('hero-title-dark', !isDark);
+    }
+
+    // Init theme from storage or default system
+    const stored = localStorage.getItem(PREF_KEY) || 'system';
+    setTheme(stored);
+
+    // Toggle menu visibility
+    if(switcherBtn){
+        switcherBtn.addEventListener('click', () => {
+            const open = menu.classList.toggle('open');
+            switcherBtn.setAttribute('aria-expanded', String(open));
+            if(open){ options[0]?.focus(); }
+        });
+    }
+
+    // Option selection
+    options.forEach(li => {
+        li.addEventListener('click', () => { setTheme(li.getAttribute('data-theme-value')); menu.classList.remove('open'); switcherBtn.setAttribute('aria-expanded','false'); switcherBtn.focus(); });
+        li.addEventListener('keydown', (e) => {
+            const idx = options.indexOf(li);
+            if(e.key === 'ArrowDown'){ e.preventDefault(); options[(idx+1)%options.length].focus(); }
+            if(e.key === 'ArrowUp'){ e.preventDefault(); options[(idx-1+options.length)%options.length].focus(); }
+            if(e.key === 'Home'){ e.preventDefault(); options[0].focus(); }
+            if(e.key === 'End'){ e.preventDefault(); options[options.length-1].focus(); }
+            if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); li.click(); }
+            if(e.key === 'Escape'){ menu.classList.remove('open'); switcherBtn.setAttribute('aria-expanded','false'); switcherBtn.focus(); }
+        });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e)=>{ if(menu.classList.contains('open') && !switcher.contains(e.target)){ menu.classList.remove('open'); switcherBtn.setAttribute('aria-expanded','false'); }});
+
+    // Respond to system changes if in system mode
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ()=>{ 
+        const currentMode = localStorage.getItem(PREF_KEY) || 'system';
+        if(currentMode === 'system'){ 
+            setTheme('system'); // This will apply the new system preference
+        }
+    });
+    adaptHeroTitle();
+
+    // Calendar widget fallback: if not loaded within 5s show backup link
+    setTimeout(()=>{
+        const desktopWidget = document.querySelector('.desktop-calendar-widget iframe, .desktop-calendar-widget div');
+        if(!desktopWidget){
+            const mobileLink = document.querySelector('.mobile-calendar-link');
+            if(mobileLink){ mobileLink.style.display='block'; }
+        }
+    },5000);
+
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu');
-    const navMenu = document.querySelector('nav ul');
+    const nav = document.querySelector('nav');
     
-    mobileMenuBtn.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        
-        // Toggle menu icon
-        const icon = mobileMenuBtn.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('nav') && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
+    if(mobileMenuBtn && nav){
+        mobileMenuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            
+            // Toggle menu icon
             const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                mobileMenuBtn.setAttribute('aria-label', 'Close menu');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+            }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.header-actions') && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+            }
+        });
+        
+        // Close menu when pressing Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+                mobileMenuBtn.focus();
+            }
+        });
+    }
     
     // Testimonial Slider
     const testimonials = document.querySelectorAll('.testimonial');
@@ -217,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-update functionality
     const AUTO_UPDATE = {
         VERSION_CHECK_INTERVAL: 60000, // Check every minute
-        currentVersion: '1.0.7',
+        currentVersion: '1.0.8',
         
         init: function() {
             this.startVersionCheck();
