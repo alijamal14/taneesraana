@@ -81,7 +81,10 @@
                 <p>Pakistan's Best Gynecologist - MBBS, DGO, MCPS, FCPS</p>
             </div>
             <div class="header-actions">
-                <nav aria-label="Primary">
+                <button class="mobile-menu" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <nav aria-label="Primary" class="nav-main">
                     <ul class="nav-menu">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
@@ -104,9 +107,6 @@
                         </li>
                     </ul>
                 </nav>
-                <button class="mobile-menu" aria-label="Toggle mobile menu" aria-expanded="false">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
             </div>
         </div>
     </header>
@@ -466,77 +466,12 @@
                     <h3 id="appointmentHeading"><i class="fas fa-calendar-check" aria-hidden="true"></i> Book Your Appointment</h3>
                     <p>Schedule your consultation with Pakistan's best gynecologist</p>
                     
-                    <!-- Mobile-specific calendar link -->
-                    <div class="mobile-calendar-link" style="display: none;">
-                        <a href="https://calendar.app.google/Qv3URTfGrdbkRX2K8" target="_blank" class="btn appointment-btn">
-                            <i class="fas fa-calendar-alt"></i> Book Appointment
+                    <!-- Simple Direct Booking Link -->
+                    <div class="appointment-booking">
+                        <a href="https://calendar.app.google/Qv3URTfGrdbkRX2K8" target="_blank" class="btn btn-primary appointment-btn" rel="noopener">
+                            <i class="fas fa-calendar-alt"></i> Book Appointment Now
                         </a>
-                    </div>
-                    
-                    <!-- Desktop Google Calendar Appointment Scheduling -->
-                    <div class="desktop-calendar-widget" id="desktopCalendarWidget">
-                        <div class="calendar-loading">
-                            <i class="fas fa-spinner fa-spin"></i> Loading calendar...
-                        </div>
-                        <script async>
-                        (function() {
-                            let calendarLoaded = false;
-                            
-                            function loadCalendar() {
-                                if (calendarLoaded) return;
-                                calendarLoaded = true;
-                                
-                                try {
-                                    if (typeof calendar !== 'undefined' && calendar.schedulingButton) {
-                                        const target = document.getElementById('desktopCalendarWidget');
-                                        const loadingEl = target.querySelector('.calendar-loading');
-                                        
-                                        calendar.schedulingButton.load({
-                                            url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ39skN6wYhRM7fsvT13ahaIbfIN76tj_OoXpc3jfHbdDKU4wRfSEIwMJPml6pOHFP5YIxBRhydf?gv=true',
-                                            color: '#10b981',
-                                            label: 'Book Appointment',
-                                            target: target,
-                                        });
-                                        
-                                        if (loadingEl) loadingEl.style.display = 'none';
-                                    } else {
-                                        throw new Error('Calendar API not available');
-                                    }
-                                } catch (error) {
-                                    console.warn('Calendar widget failed to load:', error);
-                                    // Show fallback
-                                    const mobileLink = document.querySelector('.mobile-calendar-link');
-                                    if (mobileLink) mobileLink.style.display = 'block';
-                                    
-                                    const target = document.getElementById('desktopCalendarWidget');
-                                    if (target) {
-                                        target.innerHTML = '<a href="https://calendar.app.google/Qv3URTfGrdbkRX2K8" target="_blank" class="btn btn-primary calendar-fallback"><i class="fas fa-calendar-alt"></i> Book Appointment via Google Calendar</a>';
-                                    }
-                                }
-                            }
-                            
-                            // Check if script already exists
-                            if (!document.querySelector('script[src*="calendar.google.com/calendar/scheduling-button-script.js"]')) {
-                                // Load script and then calendar
-                                const script = document.createElement('script');
-                                script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
-                                script.onload = () => setTimeout(loadCalendar, 500);
-                                script.onerror = loadCalendar; // Fallback on error
-                                document.head.appendChild(script);
-                            } else {
-                                // Script already loaded, just call loadCalendar
-                                setTimeout(loadCalendar, 500);
-                            }
-                            
-                            // Fallback timeout
-                            setTimeout(() => {
-                                const target = document.getElementById('desktopCalendarWidget');
-                                if (target && target.querySelector('.calendar-loading')) {
-                                    loadCalendar();
-                                }
-                            }, 5000);
-                        })();
-                        </script>
+                        <p style="margin-top: 12px; font-size: 0.9rem; opacity: 0.9;">Click to open Google Calendar booking</p>
                     </div>
                 </div>
             </div>

@@ -445,6 +445,32 @@ nav {
 }
 
 /* Calendar Widget */
+.appointment-booking {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.appointment-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.appointment-btn:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
 .calendar-loading {
     display: flex;
     align-items: center;
@@ -485,73 +511,95 @@ nav {
     
     header .container {
         position: relative;
+        align-items: center;
     }
     
     .header-actions {
         position: relative;
         justify-content: space-between;
         width: 100%;
+        align-items: center;
     }
     
-    nav {
-        position: absolute;
-        top: 100%;
+    .mobile-menu {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        order: 2;
+        position: relative;
+        z-index: 1001;
+        background: var(--surface-alt);
+        border-radius: var(--radius-md);
+        padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .nav-main {
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
-        background: var(--bg);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border-radius: 0 0 var(--radius-md) var(--radius-md);
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-10px);
         transition: all 0.3s ease;
-        z-index: 200;
+        z-index: 1000;
+        padding-top: 80px;
     }
     
-    nav.active {
+    .nav-main.active {
         opacity: 1;
         visibility: visible;
-        transform: translateY(0);
     }
     
     .nav-menu {
         flex-direction: column;
         gap: 0;
-        padding: 16px;
+        background: var(--bg);
+        margin: 0 20px;
+        border-radius: var(--radius-lg);
+        padding: 20px 0;
+        box-shadow: var(--shadow-lg);
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
     }
     
     .nav-menu li {
         width: 100%;
         text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-menu li:last-child {
+        border-bottom: none;
     }
     
     .nav-menu li a {
         display: block;
-        padding: 12px 16px;
-        border-radius: var(--radius-sm);
-        transition: background-color 0.3s ease;
+        padding: 16px 24px;
+        font-size: 1.1rem;
+        color: var(--headline-color);
+        transition: all 0.3s ease;
     }
     
     .nav-menu li a:hover {
         background: var(--surface-alt);
+        color: var(--primary-color);
     }
     
     /* Mobile navigation special items */
     .nav-theme-switcher {
         margin-left: 0;
-        border-top: 1px solid var(--border-color);
-        padding-top: 12px;
-        margin-top: 8px;
+        padding: 16px 24px;
         display: flex;
         justify-content: center;
+        background: var(--surface);
     }
     
     .nav-theme-switcher .theme-switcher {
         width: auto;
-    }
-    
-    .mobile-menu {
-        display: block;
     }
 }
 
@@ -921,6 +969,11 @@ nav ul li a:hover::after {
 [data-theme="dark"] .phone-link:hover { background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; }
 [data-theme="dark"] .clinic-hours .hours-item { color: var(--text-color); }
 [data-theme="dark"] .clinic-hours .hours-item strong { color: var(--headline-color); }
+[data-theme="dark"] .clinic-hours .time-slot { color: var(--text-color); }
+[data-theme="dark"] .clinic-hours .day { color: var(--headline-color); }
+[data-theme="dark"] .clinic-hours .time { color: var(--text-color); }
+[data-theme="dark"] .hours-card { background: var(--surface); border-color: var(--border-color); }
+[data-theme="dark"] .hours-card h4 { color: var(--headline-color); }
 [data-theme="dark"] .service-card { background: linear-gradient(135deg,#1e293b,#0f172a); }
 [data-theme="dark"] .service-card h3 { color: var(--headline-color); }
 [data-theme="dark"] .service-card p { color: var(--gray-color); }
