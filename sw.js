@@ -1,5 +1,6 @@
 // Service Worker for Auto-Update
-const CACHE_NAME = 'dr-tanees-raana-v1.0.7';
+// Service Worker for Dr. Tanees Raana Website
+const CACHE_NAME = 'dr-tanees-raana-v1.0.8';
 const VERSION_CHECK_INTERVAL = 30000; // Check for updates every 30 seconds
 
 // Files to cache

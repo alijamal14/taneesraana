@@ -1,9 +1,9 @@
 {
-  "version": "1.0.7",
-  "timestamp": "2025-06-08T17:23:20.096Z",
+  "version": "1.0.8",
+  "timestamp": "2025-08-10T07:57:00.000Z",
   "files": {
-    "styles.css": "1.0.7",
-    "script.js": "1.0.7",
-    "index.html": "1.0.7"
+    "styles.css": "1.0.8",
+    "script.js": "1.0.8",
+    "index.html": "1.0.8"
   }
 }
