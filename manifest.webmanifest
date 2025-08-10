@@ -4,7 +4,7 @@
   "description": "Pakistan's #1 gynecologist & women's health specialist (MBBS, DGO, MCPS, FCPS) offering advanced gynecology, obstetrics & infertility care in Islamabad & Nowshera.",
   "lang": "en",
   "dir": "ltr",
-  "start_url": "/index.html?source=pwa",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",

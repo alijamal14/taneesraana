@@ -9,7 +9,8 @@ const urlsToCache = [
   '/index.html',
   '/styles.css',
   '/script.js',
-  '/version.json'
+  '/version.json',
+  '/manifest.webmanifest'
 ];
 
 // Install event
