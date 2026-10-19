@@ -1,15 +1,22 @@
 {
   "name": "dr-tanees-raana-website",
-  "version": "1.0.0",
-  "description": "Auto-updating website for Dr. Tanees Raana",
-  "scripts": {
-    "update-patch": "node update-version.js patch",
-    "update-minor": "node update-version.js minor",
-    "update-major": "node update-version.js major",
-    "serve": "python3 -m http.server 8000",
-    "serve-php": "php -S localhost:8000"
-  },
-  "keywords": ["medical", "website", "auto-update"],
+  "private": true,
+  "type": "module",
+  "description": "Dr. Tanees Raana — clinic website (Vite + Tailwind v4), deployed to Cloudflare Pages.",
   "author": "Ali Jamal",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --port 5174 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4174 --strictPort"
+  },
+  "dependencies": {
+    "motion": "13.4.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3",
+    "vite": "8.3.1"
+  }
 }

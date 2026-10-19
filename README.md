@@ -1,203 +1,65 @@
-# Auto-Update System for Dr. Tanees Raana Website
+# Dr. Tanees Raana — clinic website
 
-This website includes an automated update system that ensures clients always see the latest version without manually clearing their cache.
+[taneesraana.mk313.com](https://taneesraana.mk313.com) · consultant gynecologist & obstetrician, Islamabad (G‑14/4) and Nowshera.
+Also the landing page for guests on the **Net Gen6** Wi‑Fi (captive portal at wifi.mk313.com, repo `alijamal14/er605w-wifi`).
 
-## How It Works
+## Stack
 
-### 1. Service Worker
-- Automatically caches website resources
-- Checks for updates every 30 seconds
-- Notifies users when new versions are available
+- **Vite 8 + TypeScript**, **Tailwind v4** (`@tailwindcss/vite`), **Motion** for reveals/springs
+- Self-hosted **Plus Jakarta Sans** (`public/fonts`, OFL) and inline **Lucide** icons — no CDNs
+- Visual language shared with the Wi‑Fi portal: emerald tokens, glass cards, border beam, spotlight, `.mesh` background
+- Hosted on **Cloudflare Pages** (project `taneesraana`), deployed with wrangler
 
-### 2. Version Management
-- `version.json` tracks the current version
-- Cache busting parameters (`?v=1.0.0`) ensure fresh resources
-- Automatic version bumping script
+Lighthouse (mobile): Performance 99 · Accessibility 100 · SEO 100.
 
-### 3. User Experience
-- Users see a notification when updates are available
-- One-click update with automatic page reload
-- No manual cache clearing required
+## Develop
 
-## For Developers
-
-### Making Updates
-
-1. **Make your changes** to HTML, CSS, or JavaScript files
-
-2. **Bump the version** using one of these commands:
-   ```bash
-   # For small fixes/changes
-   npm run update-patch
-   
-   # For new features
-   npm run update-minor
-   
-   # For major changes
-   npm run update-major
-   ```
-
-3. **Deploy the files** to your web server
-
-4. **Clients will automatically see** the update notification within 30-60 seconds
-
-### Manual Version Update
-If you prefer to update versions manually:
 ```bash
-node update-version.js patch
+npm install
+npm run dev        # http://localhost:5174
+npm run build      # typecheck + build to dist/
+npm run preview    # serve dist/ on :4174
 ```
 
-### Testing Locally
-Start a local server to test:
+## Deploy
+
 ```bash
-# Using Python
-npm run serve
-
-# Using PHP
-npm run serve-php
+doppler run --project er605w --config prd -- ./scripts/deploy.sh
 ```
 
-## Files Overview
+Builds, deploys `dist/` to the Pages production branch, and attaches `taneesraana.mk313.com`.
+DNS: `taneesraana` must be a proxied CNAME to `taneesraana.pages.dev` (the API token cannot edit DNS — change it in
+the Cloudflare dashboard). Until then GitHub Pages (`main` branch, legacy) still serves the old site.
 
-- `version.json` - Version tracking
-- `sw.js` - Service Worker for caching and update detection
-- `update-version.js` - Automated version bumping script
-- `script.js` - Enhanced with auto-update functionality
-- `index.html` - Updated with cache busting and update notifications
+## Where things are
 
-## Features
+| File | What |
+|---|---|
+| `index.html` | All content, SEO meta, JSON-LD (Physician, 2× MedicalClinic, FAQPage), Google Ads tag |
+| `src/app.css` | Tokens (light / dark / `data-theme`), components |
+| `src/ui/clinics.ts` | **Clinic hours** (`ISLAMABAD`, `NOWSHERA`) + live open badges in Pakistan time |
+| `src/ui/conversions.ts` | Google Ads conversions — `data-conversion="call"` / `"book"` on links |
+| `src/ui/chrome.ts` | Theme switch, mobile menu, header, action bar, copy buttons, service-worker toast |
+| `public/sw.js` | Network-first pages, cache-first hashed assets (bump `CACHE` to clear) |
+| `public/_headers` | Cloudflare cache headers (immutable assets, no-cache HTML/SW) |
+| `scripts/deploy.sh` | Cloudflare Pages deploy |
 
-✅ **Automatic Updates** - No manual cache clearing needed
-✅ **Version Notifications** - Users see when updates are available  
-✅ **Cache Busting** - Fresh resources every time
-✅ **Service Worker** - Offline support and update management
-✅ **Easy Version Management** - Simple commands to bump versions
-✅ **Mobile Friendly** - Update notifications work on all devices
+### Changing clinic hours
 
-## Browser Support
+Update **all three** places, then deploy:
+1. `src/ui/clinics.ts` — `ISLAMABAD` / `NOWSHERA` minute ranges (index 0 = Sunday)
+2. `index.html` — the `.hours` lists, the two FAQ answers (visible + JSON-LD) and `openingHoursSpecification`
+3. The Wi‑Fi portal (`er605w-wifi` repo: `portal/src/ui/clinics.ts` + `portal/index.html`)
 
-- Chrome/Edge: Full support
-- Firefox: Full support  
-- Safari: Full support (iOS 11.3+)
-- Internet Explorer: Basic support (no service worker)
+Current hours: Islamabad Mon–Thu 6–8 pm, Fri–Sun 8 am–8 pm · Nowshera Mon–Thu 10 am–12 pm.
 
-## Configuration
+### Content rules
 
-You can modify update check intervals in:
-- `sw.js` - `VERSION_CHECK_INTERVAL` (Service Worker checks)
-- `script.js` - `AUTO_UPDATE.VERSION_CHECK_INTERVAL` (Page-level checks)
+Keep copy factual (PMDC ethics): credentials, services, locations, hours. No "#1 / best / success-rate" claims,
+no ratings or testimonials without a verifiable source and patient consent.
 
-## Troubleshooting
+### Conversion tracking
 
-**Updates not showing?**
-- Check browser console for errors
-- Verify `version.json` is accessible
-- Ensure service worker is registered
-
-**Service worker not working?**
-- Must be served over HTTPS in production
-- localhost works for development
-- Check browser developer tools → Application → Service Workers
-
-## Deployment to IIS
-
-This website uses a **separate development and production deployment** structure for security and best practices.
-
-### Directory Structure
-```
-📁 Development:  C:\Users\Administrator\source\repos\Websites\MK\TaneesRaana\
-📁 Production:   D:\iis\TaneesRaana\
-🌐 IIS Site:     http://taneesraana.mk313.com
-```
-
-### Production Deployment
-
-#### Quick Deployment (Recommended)
-```batch
-# Run the deployment batch file
-deploy.bat
-```
-
-#### PowerShell Deployment
-```powershell
-# Deploy with version update
-.\deploy.ps1 patch
-
-# Deploy with minor version update
-.\deploy.ps1 minor
-
-# Deploy with major version update  
-.\deploy.ps1 major
-```
-
-#### Manual Deployment Steps
-1. **Update Version:**
-   ```bash
-   node update-version.js patch
-   ```
-
-2. **Copy Files to Production:**
-   ```powershell
-   # Copy production files only
-   Copy-Item "index.html" "D:\iis\TaneesRaana\" -Force
-   Copy-Item "styles.css" "D:\iis\TaneesRaana\" -Force
-   Copy-Item "script.js" "D:\iis\TaneesRaana\" -Force
-   Copy-Item "sw.js" "D:\iis\TaneesRaana\" -Force
-   Copy-Item "version.json" "D:\iis\TaneesRaana\" -Force
-   ```
-
-### IIS Configuration
-
-#### Current Hosting Setup
-- **Website Name:** TaneesRaana
-- **Hostname:** taneesraana.mk313.com
-- **Port:** 80 (HTTP)
-- **Physical Path:** D:\iis\TaneesRaana
-- **Application Pool:** DefaultAppPool
-
-#### Access URLs
-- **Public:** http://taneesraana.mk313.com
-- **Local:** http://localhost (with host header: taneesraana.mk313.com)
-
-### Security Features
-
-✅ **Development files excluded** from production deployment
-✅ **Source code protection** - .git, node_modules, scripts not accessible
-✅ **Clean production environment** - Only necessary files deployed
-✅ **Proper MIME types** - JavaScript and JSON served correctly
-✅ **Service Worker support** - Proper headers for PWA functionality
-
-### Files Deployed to Production
-- `index.html` - Main website
-- `styles.css` - Styling
-- `script.js` - JavaScript functionality
-- `sw.js` - Service Worker
-- `version.json` - Version tracking
-
-### Files Excluded from Production
-- `package.json` - Development dependencies
-- `update-version.js` - Version management script
-- `deploy.ps1` / `deploy.bat` - Deployment scripts
-- `README.md` - Documentation
-- `.gitignore` - Git configuration
-- `.git/` - Git repository
-
-### Deployment Verification
-
-After deployment, the system automatically:
-1. ✅ Verifies website accessibility
-2. ✅ Checks Service Worker functionality
-3. ✅ Confirms version.json is accessible
-4. ✅ Tests auto-update system
-
-### Troubleshooting
-
-**Common Issues:**
-- **500 Error:** Remove web.config if MIME type conflicts occur
-- **404 Not Found:** Verify IIS site physical path points to D:\iis\TaneesRaana
-- **Service Worker Not Loading:** Ensure proper MIME types are configured in IIS
-- **Updates Not Working:** Check version.json is accessible and not cached
-
-**Logs Location:**
-- IIS Logs: `C:\inetpub\logs\LogFiles\W3SVC*\`
-- Event Viewer: Windows Logs > Application
+Google Ads `AW-817969533`. Calls → `AW-817969533/IZ5zCIaIuaocEP3yhIYD`, bookings → `AW-817969533/AzWOCIOIuaocEP3yhIYD`.
+Add `data-conversion="call"` or `"book"` to any new tel:/booking link. The gtag library loads after the page is idle
+(the `gtag()` queue exists from the start, so no events are lost).
