@@ -3,6 +3,7 @@ import { animate, inView, stagger } from "motion";
 import { initConversions } from "./ui/conversions";
 import { initClinicTabs, initOpenStatus } from "./ui/clinics";
 import { initCopyButtons, initHeaderAndNav, initMenu, initServiceWorker, initTheme } from "./ui/chrome";
+import { initLiving, setGlyph } from "./ui/living";
 
 const root = document.documentElement;
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -18,6 +19,7 @@ initOpenStatus();
 initCopyButtons();
 initServiceWorker();
 root.classList.add("booted");
+initLiving();
 
 const year = document.getElementById("year");
 if (year) year.textContent = String(new Date().getFullYear());
@@ -73,6 +75,7 @@ if (!reduce) {
       i = (i + 1) % words.length;
       animate(rotator, { opacity: [1, 0], y: [0, -10], filter: ["blur(0px)", "blur(8px)"] }, { duration: 0.28, ease: "easeIn" }).then(() => {
         rotator.textContent = words[i];
+        setGlyph(words[i]);
         animate(rotator, { opacity: [0, 1], y: [12, 0], filter: ["blur(8px)", "blur(0px)"] }, { duration: 0.5, ease: EASE });
       });
     }, 3000);
