@@ -24,8 +24,8 @@ initLiving();
 const year = document.getElementById("year");
 if (year) year.textContent = String(new Date().getFullYear());
 
-// Pointer spotlight on glass cards.
-document.querySelectorAll<HTMLElement>("[data-spotlight]").forEach((el) => {
+// Pointer spotlight on glass cards (mouse only: on touch it would run during every scroll).
+if (window.matchMedia("(pointer: fine)").matches) document.querySelectorAll<HTMLElement>("[data-spotlight]").forEach((el) => {
   const move = (e: PointerEvent) => {
     const r = el.getBoundingClientRect();
     el.style.setProperty("--mx", `${e.clientX - r.left}px`);
@@ -41,6 +41,7 @@ document.querySelectorAll<HTMLElement>("[data-spotlight]").forEach((el) => {
 
 if (!reduce) {
   const EASE = [0.16, 1, 0.3, 1] as const;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
 
   // Scroll reveals (hero runs immediately).
   document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
@@ -73,10 +74,10 @@ if (!reduce) {
     let i = 0;
     setInterval(() => {
       i = (i + 1) % words.length;
-      animate(rotator, { opacity: [1, 0], y: [0, -10], filter: ["blur(0px)", "blur(8px)"] }, { duration: 0.28, ease: "easeIn" }).then(() => {
+      animate(rotator, coarse ? { opacity: [1, 0], y: [0, -10] } : { opacity: [1, 0], y: [0, -10], filter: ["blur(0px)", "blur(8px)"] }, { duration: 0.28, ease: "easeIn" }).then(() => {
         rotator.textContent = words[i];
         setGlyph(words[i]);
-        animate(rotator, { opacity: [0, 1], y: [12, 0], filter: ["blur(8px)", "blur(0px)"] }, { duration: 0.5, ease: EASE });
+        animate(rotator, coarse ? { opacity: [0, 1], y: [12, 0] } : { opacity: [0, 1], y: [12, 0], filter: ["blur(8px)", "blur(0px)"] }, { duration: 0.5, ease: EASE });
       });
     }, 3000);
   }

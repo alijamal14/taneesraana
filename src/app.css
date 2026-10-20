@@ -587,3 +587,15 @@ svg.rg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: roun
 .no-motion .i-ph .p-ring, .no-motion .i-aw .p-glint { opacity: 0; }
 
 .hours .emerg dt, .hours .emerg dd { color: #f43f5e; font-weight: 800; }
+
+/* ---- phone performance profile (same audit as the Wi-Fi portal) ------------------------------
+   backdrop-filter over the moving mesh re-blurs every frame; masked conic border and text shimmer
+   repaint every frame. Phones get opaque matte surfaces and static gradients instead. */
+@media (pointer: coarse) {
+  .glass, .btn-ghost, .site-header, .action-bar, .sheet { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .glass { background: color-mix(in srgb, var(--card) 70%, var(--background)); }
+  .site-header { background: color-mix(in srgb, var(--header) 60%, var(--background)); }
+  .action-bar { background: color-mix(in srgb, var(--card) 60%, var(--background)); }
+  .beam::before { animation: none; background: linear-gradient(135deg, transparent 45%, var(--rose), var(--primary), transparent 95%); }
+  .rotator { animation: none; background-position: 30% center; }
+}
