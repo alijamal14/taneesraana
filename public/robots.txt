@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://taneesraana.mk313.com/sitemap.xml
