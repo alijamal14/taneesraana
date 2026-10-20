@@ -585,3 +585,5 @@ svg.rg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: roun
 .tile.is-active .draw .p-smile { animation: lv-pop 0.5s ease; }
 .no-motion .alive, .no-motion .alive * { animation: none !important; }
 .no-motion .i-ph .p-ring, .no-motion .i-aw .p-glint { opacity: 0; }
+
+.hours .emerg dt, .hours .emerg dd { color: #f43f5e; font-weight: 800; }
